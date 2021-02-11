@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net45;</TargetFrameworks>
+        <Description>JsonQL Tester for AspNet</Description>
+        <Copyright>© Liyanjie.net</Copyright>
+        <Authors>liyanjie8712@outlook.com</Authors>
+        <Company>Liyanjie.net</Company>
+        <RepositoryUrl>https://github.com/liyanjie8712/JsonQL</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/liyanjie8712/JsonQL</PackageProjectUrl>
+        <RepositoryType>Git</RepositoryType>
+        <RootNamespace>Liyanjie.JsonQL.Tester</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DocumentationFile>bin\Release\Liyanjie.JsonQL.Tester.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <Target Name="MovePackage" AfterTargets="Pack">
+        <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="D:\_NugetPackages\" />
+    </Target>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+        <PackageReference Include="Liyanjie.TemplateMatching" Version="1.0.0" />
+        <ProjectReference Include="..\Liyanjie.JsonQL.Schema\Liyanjie.JsonQL.Schema.csproj" />
+        <ProjectReference Include="..\Liyanjie.JsonQL.Tester\Liyanjie.JsonQL.Tester.csproj" />
+        <Reference Include="System.Web" />
+    </ItemGroup>
+
+</Project>

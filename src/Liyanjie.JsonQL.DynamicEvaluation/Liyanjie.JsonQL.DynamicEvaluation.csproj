@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net45;netstandard2.0;</TargetFrameworks>
+        <Description>JsonQL DynamicEvaluation</Description>
+        <Copyright>© Liyanjie.net</Copyright>
+        <Authors>liyanjie8712@outlook.com</Authors>
+        <Company>Liyanjie.net</Company>
+        <RepositoryUrl>https://github.com/liyanjie8712/JsonQL</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/liyanjie8712/JsonQL</PackageProjectUrl>
+        <RepositoryType>Git</RepositoryType>
+        <RootNamespace>Liyanjie.JsonQL</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DocumentationFile>bin\Release\Liyanjie.JsonQL.DynamicEvaluation.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <Target Name="MovePackage" AfterTargets="Pack">
+        <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="D:\_NugetPackages\" />
+    </Target>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+      <PackageReference Include="Liyanjie.Linq.Expressions" Version="1.0.0" />
+      <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+        <PackageReference Include="Liyanjie.Linq.Expressions" Version="1.0.0" />
+        <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
+    </ItemGroup>
+
+</Project>

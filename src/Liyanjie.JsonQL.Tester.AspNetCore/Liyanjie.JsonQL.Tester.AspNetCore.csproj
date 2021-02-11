@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.0;</TargetFrameworks>
+        <OutputType>Library</OutputType>
+        <IsPackable>True</IsPackable>
+        <Description>JsonQL Tester for AspNetCore</Description>
+        <Copyright>© Liyanjie.net</Copyright>
+        <Authors>liyanjie8712@outlook.com</Authors>
+        <Company>Liyanjie.net</Company>
+        <RepositoryUrl>https://github.com/liyanjie8712/JsonQL</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/liyanjie8712/JsonQL</PackageProjectUrl>
+        <RepositoryType>Git</RepositoryType>
+        <RootNamespace>Liyanjie.JsonQL.Tester</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DocumentationFile>bin\Release\Liyanjie.JsonQL.Tester.AspNetCore.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <Target Name="MovePackage" AfterTargets="Pack">
+        <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="D:\_NugetPackages\" />
+    </Target>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+        <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.0.0" />
+        <ProjectReference Include="..\Liyanjie.JsonQL.Schema\Liyanjie.JsonQL.Schema.csproj" />
+        <ProjectReference Include="..\Liyanjie.JsonQL.Tester\Liyanjie.JsonQL.Tester.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+        <ProjectReference Include="..\Liyanjie.JsonQL.Schema\Liyanjie.JsonQL.Schema.csproj" />
+        <ProjectReference Include="..\Liyanjie.JsonQL.Tester\Liyanjie.JsonQL.Tester.csproj" />
+    </ItemGroup>
+
+</Project>
