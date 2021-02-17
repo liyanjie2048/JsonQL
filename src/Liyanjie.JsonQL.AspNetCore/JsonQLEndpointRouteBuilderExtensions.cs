@@ -14,8 +14,12 @@ namespace Microsoft.AspNetCore.Builder
         /// 
         /// </summary>
         /// <param name="endpoints"></param>
+        /// <param name="pattern"></param>
+        /// <param name="httpMethods"></param>
         /// <returns></returns>
-        public static IEndpointRouteBuilder MapJsonQL(this IEndpointRouteBuilder endpoints, string pattern = "/jsonQL", params string[] httpMethods)
+        public static IEndpointRouteBuilder MapJsonQL(this IEndpointRouteBuilder endpoints,
+            string pattern = "/jsonQL",
+            params string[] httpMethods)
         {
             var pipeline = endpoints.CreateApplicationBuilder().UseMiddleware<JsonQLMiddleware>().Build();
             var displayName = "JsonQL";

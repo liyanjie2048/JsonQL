@@ -16,9 +16,7 @@ namespace Liyanjie.JsonQL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="next"></param>
         /// <param name="jsonQLOptions"></param>
-        /// <param name="jsonQLQueryHandler"></param>
         public JsonQLMiddleware(IOptions<JsonQLOptions> jsonQLOptions)
         {
             if (jsonQLOptions == null)
@@ -26,6 +24,12 @@ namespace Liyanjie.JsonQL
             this.jsonQLOptions = jsonQLOptions.Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             var jsonQLRequest = new JsonQLRequest(context, jsonQLOptions);
@@ -35,7 +39,7 @@ namespace Liyanjie.JsonQL
             var response = context.Response;
             if (authorized)
             {
-                var result = await new JsonQLQueryHandler(jsonQLOptions).HandleAsync(jsonQLRequest);
+                var result = await new JsonQLHandler(jsonQLOptions).HandleAsync(jsonQLRequest);
 
                 response.Clear();
                 response.StatusCode = 200;

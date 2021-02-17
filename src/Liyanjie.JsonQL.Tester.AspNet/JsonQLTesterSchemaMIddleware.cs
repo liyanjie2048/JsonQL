@@ -8,15 +8,28 @@ using Liyanjie.TemplateMatching;
 
 namespace Liyanjie.JsonQL.Tester
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class JsonQLTesterSchemaMIddleware
     {
         readonly JsonQLTesterOptions options;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public JsonQLTesterSchemaMIddleware(JsonQLTesterOptions options)
         {
             this.options = options;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="pathBase"></param>
+        /// <returns></returns>
         public async Task InvokeAsync(HttpContext httpContext, string pathBase)
         {
             var request = httpContext.Request;

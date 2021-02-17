@@ -18,7 +18,6 @@ namespace Microsoft.AspNetCore.Builder
         /// JsonQL
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="configue"></param>
         /// <param name="routeTemplate"></param>
         /// <returns></returns>
         public static IApplicationBuilder UseJsonQLTester(this IApplicationBuilder app,

@@ -36,6 +36,7 @@ namespace System.Web
         /// </summary>
         /// <param name="app"></param>
         /// <param name="serviceProvider"></param>
+        /// <param name="pathBase"></param>
         /// <returns></returns>
         public static HttpApplication UseJsonQLTester(this HttpApplication app,
             IServiceProvider serviceProvider,
@@ -84,10 +85,10 @@ namespace System.Web
         /// Add in Global.Application_BeginRequest (Static Mode)
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="configue"></param>
-        /// <param name="routeBase"></param>
+        /// <param name="pathBase"></param>
         /// <returns></returns>
-        public static HttpApplication UseJsonQLTester(this HttpApplication app, string pathBase = "jsonQL-tester")
+        public static HttpApplication UseJsonQLTester(this HttpApplication app, 
+            string pathBase = "jsonQL-tester")
         {
             jsonQLTesterSchemaMIddleware.InvokeAsync(app.Context, pathBase).Wait();
             jsonQLTesterRedirectMiddleware.InvokeAsync(app.Context, pathBase).Wait();

@@ -10,15 +10,28 @@ using Microsoft.Extensions.Options;
 
 namespace Liyanjie.JsonQL.Tester
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class JsonQLTesterSchemaMiddleware : IMiddleware
     {
         readonly JsonQLTesterOptions jsonQLTesterOptions;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public JsonQLTesterSchemaMiddleware(IOptions<JsonQLTesterOptions> options)
         {
             this.jsonQLTesterOptions = options.Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             var schema = JsonQLSchema.Generate(jsonQLTesterOptions.ResourceTypes);

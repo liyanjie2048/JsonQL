@@ -18,8 +18,10 @@ namespace Microsoft.AspNetCore.Builder
         /// 
         /// </summary>
         /// <param name="endpoints"></param>
+        /// <param name="pattern"></param>
         /// <returns></returns>
-        public static IEndpointRouteBuilder MapJsonQLTester(this IEndpointRouteBuilder endpoints, string pattern = "/jsonQL-tester")
+        public static IEndpointRouteBuilder MapJsonQLTester(this IEndpointRouteBuilder endpoints,
+            string pattern = "/jsonQL-tester")
         {
             endpoints.MapGet($"{pattern}/schema.json", endpoints.CreateApplicationBuilder().UseMiddleware<JsonQLTesterSchemaMiddleware>().Build())
                 .WithDisplayName("JsonQL Tester Schema");

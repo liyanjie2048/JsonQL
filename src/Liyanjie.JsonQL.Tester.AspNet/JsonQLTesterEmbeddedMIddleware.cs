@@ -5,15 +5,28 @@ using System.Web;
 
 namespace Liyanjie.JsonQL.Tester
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class JsonQLTesterEmbeddedMIddleware
     {
         readonly JsonQLTesterOptions options;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public JsonQLTesterEmbeddedMIddleware(JsonQLTesterOptions options)
         {
             this.options = options;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="pathBase"></param>
+        /// <returns></returns>
         public async Task InvokeAsync(HttpContext httpContext, string pathBase)
         {
             var embeddedPathBase = $"/{pathBase}/";
