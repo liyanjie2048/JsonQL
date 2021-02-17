@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFrameworks>net45;</TargetFrameworks>
+        <RootNamespace>Liyanjie.JsonQL.Tester</RootNamespace>
         <Description>JsonQL Tester for AspNet</Description>
         <Copyright>© Liyanjie.net</Copyright>
         <Authors>liyanjie8712@outlook.com</Authors>
@@ -9,7 +10,6 @@
         <RepositoryUrl>https://github.com/liyanjie8712/JsonQL</RepositoryUrl>
         <PackageProjectUrl>https://github.com/liyanjie8712/JsonQL</PackageProjectUrl>
         <RepositoryType>Git</RepositoryType>
-        <RootNamespace>Liyanjie.JsonQL.Tester</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
