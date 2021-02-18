@@ -35,7 +35,6 @@ namespace Liyanjie.JsonQL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="query"></param>
         /// <param name="jsonQLRequest"></param>
         /// <returns></returns>
         public async Task<string> HandleAsync(IJsonQLRequest jsonQLRequest)
@@ -54,6 +53,13 @@ namespace Liyanjie.JsonQL
             return options.JsonSerialize(@object);
         }
 
+        /// <summary>
+        /// 从类json模板创建对象
+        /// </summary>
+        /// <param name="template">“{}”包围的类json对象模板</param>
+        /// <param name="variables">要从中取值的变量</param>
+        /// <param name="object">要从中取值的对象</param>
+        /// <returns></returns>
         async Task<object> CreateObjectAsync(
             string template,
             IDictionary<string, object> variables = null,
