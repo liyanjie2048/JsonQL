@@ -20,8 +20,8 @@
         <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\_NugetPackages\" />
     </Target>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
-        <PackageReference Include="EntityFramework" Version="6.1.3" />
+    <ItemGroup>
+        <PackageReference Include="EntityFramework" Version="6.4.4" />
         <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
     </ItemGroup>
 

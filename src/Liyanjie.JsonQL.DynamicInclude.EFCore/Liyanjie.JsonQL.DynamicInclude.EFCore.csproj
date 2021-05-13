@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;</TargetFrameworks>
+        <TargetFrameworks>netstandard2.1;</TargetFrameworks>
         <RootNamespace>Liyanjie.JsonQL</RootNamespace>
         <Description>JsonQL DynamicInclude of EFCore</Description>
         <Copyright>© Liyanjie.net</Copyright>
@@ -20,8 +20,8 @@
         <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\_NugetPackages\" />
     </Target>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
         <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
     </ItemGroup>
 

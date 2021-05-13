@@ -1,5 +1,4 @@
-﻿#if NETCOREAPP3_0
-using Liyanjie.JsonQL;
+﻿using Liyanjie.JsonQL;
 
 using Microsoft.AspNetCore.Routing;
 
@@ -32,4 +31,3 @@ namespace Microsoft.AspNetCore.Builder
         }
     }
 }
-#endif

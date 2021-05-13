@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Liyanjie.JsonQL.Sample.AspNetCore_2_1
+namespace Liyanjie.JsonQL.Sample.AspNetCore
 {
     public class UserAccountRecord : Entity
     {

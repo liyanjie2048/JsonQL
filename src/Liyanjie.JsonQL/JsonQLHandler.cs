@@ -16,6 +16,7 @@ namespace Liyanjie.JsonQL
     public sealed class JsonQLHandler
     {
         readonly JsonQLOptions options;
+        readonly JsonQLResourceTable jsonQLResourceTable;
 
         IJsonQLRequest jsonQLRequest;
         Dictionary<string, JsonQLResource> resources;
@@ -26,10 +27,14 @@ namespace Liyanjie.JsonQL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="jsonQLResourceTable"></param>
         /// <param name="options"></param>
-        public JsonQLHandler(JsonQLOptions options)
+        public JsonQLHandler(
+            JsonQLOptions options,
+            JsonQLResourceTable jsonQLResourceTable)
         {
             this.options = options ?? throw new ArgumentNullException(nameof(options));
+            this.jsonQLResourceTable= jsonQLResourceTable?? throw new ArgumentNullException(nameof(jsonQLResourceTable));
         }
 
         /// <summary>
@@ -43,7 +48,7 @@ namespace Liyanjie.JsonQL
 
             JsonQLParser.ParseQuery(await jsonQLRequest.GetQueryAsync(), out var _resources, out var _expressions, out var _templates, out var _entry);
 
-            resources = _resources.ToDictionary(_ => _.Key, _ => options.ResourceTable.GetResource(_.Value));
+            resources = _resources.ToDictionary(_ => _.Key, _ => jsonQLResourceTable.GetResource(_.Value));
             expressions = _expressions;
             templates = _templates;
             entry = _entry;

@@ -10,10 +10,14 @@ namespace Liyanjie.JsonQL
     internal class JsonQLMiddleware
     {
         readonly JsonQLOptions jsonQLOptions;
+        readonly JsonQLResourceTable jsonQLResourceTable;
 
-        public JsonQLMiddleware(JsonQLOptions jsonQLOptions)
+        public JsonQLMiddleware(
+            JsonQLOptions jsonQLOptions,
+            JsonQLResourceTable jsonQLResourceTable)
         {
             this.jsonQLOptions = jsonQLOptions ?? throw new ArgumentNullException(nameof(jsonQLOptions));
+            this.jsonQLResourceTable = jsonQLResourceTable ?? throw new ArgumentNullException(nameof(jsonQLResourceTable));
         }
 
         public async Task InvokeAsync(HttpContext httpContext, string routeTemplate)
@@ -32,7 +36,7 @@ namespace Liyanjie.JsonQL
                         : await jsonQLOptions.AuthorizeAsync(jsonQLRequest);
                     if (authorized)
                     {
-                        var result = await new JsonQLHandler(jsonQLOptions).HandleAsync(jsonQLRequest);
+                        var result = await new JsonQLHandler(jsonQLOptions, jsonQLResourceTable).HandleAsync(jsonQLRequest);
 
                         response.Clear();
                         response.StatusCode = 200;

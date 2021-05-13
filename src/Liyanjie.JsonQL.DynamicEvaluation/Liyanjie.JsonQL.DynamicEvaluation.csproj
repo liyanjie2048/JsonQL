@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net45;netstandard2.0;</TargetFrameworks>
+        <TargetFrameworks>net45;netstandard2.1;</TargetFrameworks>
         <RootNamespace>Liyanjie.JsonQL</RootNamespace>
         <Description>JsonQL DynamicEvaluation</Description>
         <Copyright>© Liyanjie.net</Copyright>
@@ -20,14 +20,9 @@
         <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\_NugetPackages\" />
     </Target>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <ItemGroup>
       <PackageReference Include="Liyanjie.Linq.Expressions" Version="1.0.0" />
       <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <PackageReference Include="Liyanjie.Linq.Expressions" Version="1.0.0" />
-        <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
     </ItemGroup>
 
 </Project>

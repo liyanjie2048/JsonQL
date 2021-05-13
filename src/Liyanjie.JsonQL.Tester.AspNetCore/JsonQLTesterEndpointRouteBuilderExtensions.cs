@@ -1,5 +1,4 @@
-﻿#if NETCOREAPP3_0
-using System.Reflection;
+﻿using System.Reflection;
 
 using Liyanjie.JsonQL.Tester;
 
@@ -52,4 +51,3 @@ namespace Microsoft.AspNetCore.Builder
         }
     }
 }
-#endif

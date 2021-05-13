@@ -8,13 +8,6 @@ namespace Liyanjie.JsonQL
     /// </summary>
     public class JsonQLOptions
     {
-        readonly JsonQLResourceTable resourceTable = new JsonQLResourceTable();
-
-        /// <summary>
-        /// 资源表
-        /// </summary>
-        public JsonQLResourceTable ResourceTable => resourceTable;
-
         /// <summary>
         /// 授权验证
         /// </summary>
@@ -47,7 +40,7 @@ namespace Liyanjie.JsonQL
 #if NET45
         = obj => Newtonsoft.Json.JsonConvert.SerializeObject(obj);
 #endif
-#if NETSTANDARD2_0
+#if NETSTANDARD
         = obj => System.Text.Json.JsonSerializer.Serialize(obj);
 #endif
 
@@ -58,7 +51,7 @@ namespace Liyanjie.JsonQL
 #if NET45
         = (str, type) => Newtonsoft.Json.JsonConvert.DeserializeObject(str, type);
 #endif
-#if NETSTANDARD2_0
+#if NETSTANDARD
         = (str, type) => System.Text.Json.JsonSerializer.Deserialize(str, type);
 #endif
     }

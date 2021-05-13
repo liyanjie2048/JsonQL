@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Liyanjie.JsonQL.Sample.AspNetCore_2_1
+namespace Liyanjie.JsonQL.Sample.AspNetCore
 {
     public class Program
     {

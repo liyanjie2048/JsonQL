@@ -3,7 +3,7 @@
     <PropertyGroup>
         <OutputType>Library</OutputType>
         <IsPackable>True</IsPackable>
-        <TargetFrameworks>netstandard2.0;netcoreapp3.0;</TargetFrameworks>
+        <TargetFrameworks>net5.0;</TargetFrameworks>
         <RootNamespace>Liyanjie.JsonQL</RootNamespace>
         <Description>JsonQL for AspNetCore</Description>
         <Copyright>© Liyanjie.net</Copyright>
@@ -22,12 +22,7 @@
         <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\_NugetPackages\" />
     </Target>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.0" />
-        <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+    <ItemGroup>
         <ProjectReference Include="..\Liyanjie.JsonQL\Liyanjie.JsonQL.csproj" />
     </ItemGroup>
 

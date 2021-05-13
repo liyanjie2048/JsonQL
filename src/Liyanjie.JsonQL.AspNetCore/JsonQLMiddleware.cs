@@ -12,16 +12,21 @@ namespace Liyanjie.JsonQL
     public class JsonQLMiddleware : IMiddleware
     {
         readonly JsonQLOptions jsonQLOptions;
+        readonly JsonQLResourceTable jsonQLResourceTable;
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="jsonQLResourceTable"></param>
         /// <param name="jsonQLOptions"></param>
-        public JsonQLMiddleware(IOptions<JsonQLOptions> jsonQLOptions)
+        public JsonQLMiddleware(
+            IOptions<JsonQLOptions> jsonQLOptions,
+            JsonQLResourceTable jsonQLResourceTable)
         {
             if (jsonQLOptions == null)
                 throw new ArgumentNullException(nameof(jsonQLOptions));
             this.jsonQLOptions = jsonQLOptions.Value;
+            this.jsonQLResourceTable = jsonQLResourceTable ?? throw new ArgumentNullException(nameof(jsonQLResourceTable));
         }
 
         /// <summary>
@@ -39,7 +44,7 @@ namespace Liyanjie.JsonQL
             var response = context.Response;
             if (authorized)
             {
-                var result = await new JsonQLHandler(jsonQLOptions).HandleAsync(jsonQLRequest);
+                var result = await new JsonQLHandler(jsonQLOptions, jsonQLResourceTable).HandleAsync(jsonQLRequest);
 
                 response.Clear();
                 response.StatusCode = 200;

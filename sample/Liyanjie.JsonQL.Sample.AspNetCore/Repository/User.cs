@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Liyanjie.JsonQL.Sample.AspNetCore_3_0
+namespace Liyanjie.JsonQL.Sample.AspNetCore
 {
     public class User : Entity
     {

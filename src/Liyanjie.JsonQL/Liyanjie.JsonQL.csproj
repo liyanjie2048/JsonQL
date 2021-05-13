@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net45;netstandard2.0;</TargetFrameworks>
+        <TargetFrameworks>net45;netstandard2.1;</TargetFrameworks>
         <Description>JsonQL Core</Description>
         <Copyright>© Liyanjie.net</Copyright>
         <Authors>liyanjie8712@outlook.com</Authors>
@@ -19,16 +19,18 @@
         <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\_NugetPackages\" />
     </Target>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <ItemGroup>
         <PackageReference Include="Liyanjie.TypeBuilder" Version="1.0.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-        <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-        <PackageReference Include="System.ValueTuple" Version="4.3.0" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <PackageReference Include="Liyanjie.TypeBuilder" Version="1.0.0" />
-        <PackageReference Include="System.Text.Json" Version="4.6.0" />
+    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+        <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
+        <PackageReference Include="System.Text.Json" Version="5.0.0" />
     </ItemGroup>
 
 </Project>

@@ -36,7 +36,7 @@ namespace Liyanjie.JsonQL.Tester
 #if NET45
         = obj => Newtonsoft.Json.JsonConvert.SerializeObject(obj);
 #endif
-#if NETSTANDARD2_0
+#if NETSTANDARD
         = obj => System.Text.Json.JsonSerializer.Serialize(obj);
 #endif
     }

@@ -11,19 +11,24 @@ namespace System.Web
         /// Add in Global.Application_Start.(Use DI)
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="registerServiceType"></param>
         /// <param name="registerServiceInstance"></param>
+        /// <param name="registerServiceFactory"></param>
+        /// <param name="registerServiceType"></param>
         /// <param name="configureOptions"></param>
+        /// <param name="configureResources"></param>
         /// <returns></returns>
         public static HttpApplication AddJsonQL(this HttpApplication app,
-            Action<Type, string> registerServiceType,
             Action<object, string> registerServiceInstance,
-            Action<JsonQLOptions> configureOptions = null)
+            Action<Func<IServiceProvider, object>, string> registerServiceFactory,
+            Action<Type, string> registerServiceType,
+            Action<JsonQLOptions> configureOptions,
+            Func<IServiceProvider, JsonQLResourceTable> configureResources)
         {
             var jsonQLOptions = new JsonQLOptions();
             configureOptions?.Invoke(jsonQLOptions);
 
             registerServiceInstance.Invoke(jsonQLOptions, "Singleton");
+            registerServiceFactory.Invoke(configureResources, "Singleton");
             registerServiceType.Invoke(typeof(JsonQLMiddleware), "Singleton");
 
             return app;
@@ -50,6 +55,7 @@ namespace System.Web
         #region Static ModuleTable Mode
 
         static JsonQLOptions jsonQLOptions;
+        static JsonQLResourceTable jsonQLResourceTable;
         static JsonQLMiddleware jsonQLMiddleware;
 
         /// <summary>
@@ -57,12 +63,17 @@ namespace System.Web
         /// </summary>
         /// <param name="app"></param>
         /// <param name="configureOptions"></param>
+        /// <param name="configureResources"></param>
         /// <returns></returns>
-        public static HttpApplication AddJsonQL(this HttpApplication app, Action<JsonQLOptions> configureOptions = null)
+        public static HttpApplication AddJsonQL(this HttpApplication app,
+            Action<JsonQLOptions> configureOptions,
+            Action<JsonQLResourceTable> configureResources)
         {
             jsonQLOptions = new JsonQLOptions();
+            jsonQLResourceTable = new JsonQLResourceTable();
             configureOptions?.Invoke(jsonQLOptions);
-            jsonQLMiddleware = new JsonQLMiddleware(jsonQLOptions);
+            configureResources(jsonQLResourceTable);
+            jsonQLMiddleware = new JsonQLMiddleware(jsonQLOptions, jsonQLResourceTable);
 
             return app;
         }

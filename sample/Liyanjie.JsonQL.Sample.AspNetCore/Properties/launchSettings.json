@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Liyanjie.JsonQL.Sample.AspNetCore_3_0": {
+    "Liyanjie.JsonQL.Sample.AspNetCore": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5000",

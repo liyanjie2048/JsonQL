@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
-namespace Liyanjie.JsonQL.Sample.AspNetCore_3_0
+namespace Liyanjie.JsonQL.Sample.AspNetCore
 {
     public class Startup
     {
@@ -24,18 +22,21 @@ namespace Liyanjie.JsonQL.Sample.AspNetCore_3_0
             //配置JsonQL的资源列表
             services.AddJsonQL(options =>
             {
-                var dataContext = services.BuildServiceProvider(false).GetService<DataContext>();
-                options.ResourceTable
-                    .AddResource("Orders", dataContext.Orders.AsQueryable())
-                    .AddResource("OrderStatusChanges", dataContext.OrderStatusChanges.AsQueryable())
-                    .AddResource("UserAccounts", dataContext.UserAccounts.AsQueryable())
-                    .AddResource("UserAccountRecords", dataContext.UserAccountRecords.AsQueryable())
-                    .AddResource("Users", dataContext.Users.AsQueryable())
-                    .AddResource("UserProfiles", dataContext.UserProfiles.AsQueryable());
                 options.AuthorizeAsync = context => Task.FromResult(true);
                 options.JsonQLIncluder = new DynamicJsonQLIncluder();
                 options.JsonQLEvaluator = new DynamicJsonQLEvaluator();
                 options.JsonQLLinqer = new DynamicJsonQLLinqer();
+            }, serviceProvider =>
+            {
+                var context = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<DataContext>();
+                var resourceTable = new JsonQLResourceTable();
+                resourceTable.AddResource("Orders", new Resource<Order>(context.Orders.AsQueryable()));
+                resourceTable.AddResource("OrderStatusChanges", new Resource<OrderStatusChange>(context.OrderStatusChanges.AsQueryable()));
+                resourceTable.AddResource("UserAccounts", new Resource<UserAccount>(context.UserAccounts.AsQueryable()));
+                resourceTable.AddResource("UserAccountRecords", new Resource<UserAccountRecord>(context.UserAccountRecords.AsQueryable()));
+                resourceTable.AddResource("Users", new Resource<User>(context.Users.AsQueryable()));
+                resourceTable.AddResource("UserProfiles", new Resource<UserProfile>(context.UserProfiles.AsQueryable()));
+                return resourceTable;
             });
             services.AddJsonQLTester(options =>
             {

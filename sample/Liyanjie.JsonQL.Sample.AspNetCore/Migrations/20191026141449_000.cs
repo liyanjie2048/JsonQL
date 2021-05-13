@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Liyanjie.JsonQL.Sample.AspNetCore_3_0.Migrations
+namespace Liyanjie.JsonQL.Sample.AspNetCore.Migrations
 {
     public partial class _000 : Migration
     {
