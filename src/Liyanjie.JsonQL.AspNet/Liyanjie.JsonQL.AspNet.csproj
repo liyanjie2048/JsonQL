@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net45;</TargetFrameworks>
+        <TargetFrameworks>net452;</TargetFrameworks>
         <RootNamespace>Liyanjie.JsonQL</RootNamespace>
         <Description>JsonQL for AspNet</Description>
         <Copyright>© Liyanjie.net</Copyright>
@@ -20,7 +20,7 @@
         <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\_NugetPackages\" />
     </Target>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net452'">
         <PackageReference Include="Liyanjie.TemplateMatching" Version="1.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <Reference Include="System.Web" />

@@ -265,9 +265,8 @@ namespace Liyanjie.JsonQL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="jsonQLQueryable"></param>
         /// <param name="orderedQueryable"></param>
-        /// <param name="jsonQLIncluder"></param>
-        /// <param name="jsonQLLinqer"></param>
         public JsonQLQueryable_Ordered(
             JsonQLQueryable jsonQLQueryable,
             IOrderedQueryable orderedQueryable)

@@ -5,11 +5,20 @@ using System.Text.RegularExpressions;
 
 namespace Liyanjie.JsonQL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class JsonQLParser
     {
         #region ParseAccess
 
         const string pattern = @"\([^\(\)]*\)";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="template"></param>
+        /// <returns></returns>
         public static string[] ParseAccess(string template)
         {
             var segments = new Dictionary<string, string>();
@@ -41,6 +50,12 @@ namespace Liyanjie.JsonQL
 
         #region ParseInclude
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="template"></param>
+        /// <param name="templates"></param>
+        /// <returns></returns>
         public static string[] ParseInclude(string template, IDictionary<string, string> templates)
         {
             templates ??= new Dictionary<string, string>();
@@ -79,6 +94,11 @@ namespace Liyanjie.JsonQL
 
         #region ParseMethod
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="template"></param>
+        /// <returns></returns>
         public static (string Name, string Parameter, IList<string> Variables) ParseMethod(string template)
         {
             if (!Regex.IsMatch(template, @"^[a-zA-Z_]\w*\("))
@@ -104,6 +124,12 @@ namespace Liyanjie.JsonQL
 
         #region ParseSelect
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="template"></param>
+        /// <param name="templates"></param>
+        /// <returns></returns>
         public static string ParseSelect(string template, IDictionary<string, string> templates)
         {
             templates ??= new Dictionary<string, string>();
@@ -221,6 +247,15 @@ namespace Liyanjie.JsonQL
         const string regex_Resource = @"[a-zA-Z_]\w*\[\]";
         const string regex_Expression = @"{{[^{}]*}}";
         const string regex_Template = @"{[^{}]*}";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="resources"></param>
+        /// <param name="expressions"></param>
+        /// <param name="templates"></param>
+        /// <param name="entry"></param>
         public static void ParseQuery(string query,
             out Dictionary<string, string> resources,
             out Dictionary<string, string> expressions,

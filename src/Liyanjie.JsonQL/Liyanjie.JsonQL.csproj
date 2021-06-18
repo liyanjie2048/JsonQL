@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net45;netstandard2.1;</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.1;</TargetFrameworks>
         <Description>JsonQL Core</Description>
         <Copyright>© Liyanjie.net</Copyright>
         <Authors>liyanjie8712@outlook.com</Authors>
@@ -23,7 +23,7 @@
         <PackageReference Include="Liyanjie.TypeBuilder" Version="1.0.0" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net452'">
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
         <PackageReference Include="System.ValueTuple" Version="4.5.0" />
