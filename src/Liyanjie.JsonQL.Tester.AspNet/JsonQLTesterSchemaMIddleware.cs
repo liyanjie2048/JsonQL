@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Routing;
@@ -40,7 +41,7 @@ namespace Liyanjie.JsonQL.Tester
                 if (templateMatcher.TryMatch(request.Path, routeValues))
                 {
                     var schema = JsonQLSchema.Generate(options.ResourceTypes);
-                    var content = options.JsonSerialize(new
+                    var content = JsonSerializer.Serialize(new
                     {
                         Title = options?.SchemaTitle,
                         Description = options?.SchemaDescription,

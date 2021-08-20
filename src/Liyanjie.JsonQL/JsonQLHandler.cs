@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -55,7 +56,7 @@ namespace Liyanjie.JsonQL
 
             var @object = await CreateObjectAsync(templates[entry]);
 
-            return options.JsonSerialize(@object);
+            return JsonSerializer.Serialize(@object);
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace Liyanjie.JsonQL
             else if (template.StartsWith("$"))//变量
                 return await ProcessResourceAsync(template, includes, variables);
             else
-                return options.JsonDeserialize(template, typeof(object));
+                return JsonSerializer.Deserialize(template, typeof(object));
         }
 
         async Task<(JsonQLResource Resource, object ResourceAccessor)> ProcessResourceAsync(

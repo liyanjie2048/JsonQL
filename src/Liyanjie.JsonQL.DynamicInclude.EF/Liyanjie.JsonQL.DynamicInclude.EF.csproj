@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net452;</TargetFrameworks>
+        <TargetFrameworks>net461;</TargetFrameworks>
         <RootNamespace>Liyanjie.JsonQL</RootNamespace>
         <Description>JsonQL DynamicInclude of EF</Description>
         <Copyright>© Liyanjie.net</Copyright>

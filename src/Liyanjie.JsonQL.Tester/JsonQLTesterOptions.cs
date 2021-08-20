@@ -28,16 +28,5 @@ namespace Liyanjie.JsonQL.Tester
         /// 
         /// </summary>
         public string SchemaServerUrl { get; set; } = "/jsonQL";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Func<object, string> JsonSerialize { get; set; }
-#if NET45
-        = obj => Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-#endif
-#if NETSTANDARD
-        = obj => System.Text.Json.JsonSerializer.Serialize(obj);
-#endif
     }
 }

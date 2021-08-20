@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net452;</TargetFrameworks>
+        <TargetFrameworks>net461;</TargetFrameworks>
         <RootNamespace>Liyanjie.JsonQL.Tester</RootNamespace>
         <Description>JsonQL Tester for AspNet</Description>
         <Copyright>© Liyanjie.net</Copyright>

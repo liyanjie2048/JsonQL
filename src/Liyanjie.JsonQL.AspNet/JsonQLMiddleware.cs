@@ -31,9 +31,7 @@ namespace Liyanjie.JsonQL
                 {
                     var response = httpContext.Response;
                     var jsonQLRequest = new JsonQLRequest(httpContext, jsonQLOptions);
-                    var authorized = jsonQLOptions.AuthorizeAsync == null
-                        ? true
-                        : await jsonQLOptions.AuthorizeAsync(jsonQLRequest);
+                    var authorized = jsonQLOptions.AuthorizeAsync == null || await jsonQLOptions.AuthorizeAsync(jsonQLRequest);
                     if (authorized)
                     {
                         var result = await new JsonQLHandler(jsonQLOptions, jsonQLResourceTable).HandleAsync(jsonQLRequest);

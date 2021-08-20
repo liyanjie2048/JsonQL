@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using Liyanjie.JsonQL.Schema;
@@ -35,7 +36,7 @@ namespace Liyanjie.JsonQL.Tester
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             var schema = JsonQLSchema.Generate(jsonQLTesterOptions.ResourceTypes);
-            var content = jsonQLTesterOptions.JsonSerialize(new
+            var content = JsonSerializer.Serialize(new
             {
                 Title = jsonQLTesterOptions?.SchemaTitle,
                 Description = jsonQLTesterOptions?.SchemaDescription,
